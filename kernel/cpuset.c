@@ -2159,7 +2159,7 @@ retry:
 		goto retry;
 	}
 
-	cpumask_and(&new_allowed, cs->cpus_requested, top_cpuset.cpus_allowed);
+	cpumask_and(&new_allowed, cs->cpus_allowed, top_cpuset.cpus_allowed);
 	cpumask_xor(&diff, &new_allowed, cs->cpus_allowed);
 
 	nodes_andnot(off_mems, cs->mems_allowed, top_cpuset.mems_allowed);
