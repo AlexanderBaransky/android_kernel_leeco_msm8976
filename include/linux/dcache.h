@@ -415,11 +415,20 @@ static inline bool d_mountpoint(struct dentry *dentry)
 	return dentry->d_flags & DCACHE_MOUNTED;
 }
 
+static inline bool d_is_negative(const struct dentry *dentry)
+{
+        return (dentry->d_inode == NULL);
+}
+
 static inline bool d_is_su(const struct dentry *dentry)
 {
 	return dentry &&
 	       dentry->d_name.len == 2 &&
 	       !memcmp(dentry->d_name.name, "su", 2);
+}
+
+static inline bool d_is_positive(const struct dentry *dentry) {
+        return !d_is_negative(dentry);
 }
 
 extern int sysctl_vfs_cache_pressure;
